@@ -27,9 +27,34 @@ class HomeViewModel: ObservableObject {
         
         switch result {
         case .success(let response):
-            self.screenModel = response
+            DispatchQueue.main.async {
+                self.screenModel = response
+            }
         case .failure(let error):
             throw error
         }
+    }
+    
+    func buildSections() throws -> [GenericSectionView] {
+        var sections = [GenericSectionView]()
+        
+        guard let items = screenModel?.items else {
+            return []
+        }
+        
+        for item in items {
+            switch item.type {
+            case .balance:
+                guard let model: BalanceResponse = item.content.decode() else {
+                    throw RequestError.decode
+                }
+                sections.append(BalanceSection(model: model))
+            case .creditCard:
+                break
+            case .loan:
+                break
+            }
+        }
+        return sections
     }
 }

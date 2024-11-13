@@ -33,10 +33,14 @@ struct HomeView: View {
                 
                 VStack {
                     List {
-                        BalanceView()
-                            .padding(.bottom, 15)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
+                        if let sections = try? viewModel.buildSections() {
+                            ForEach(sections, id: \.identifier) { section in
+                                section.build()
+                                    .padding(.bottom, 15)
+                                    .listRowInsets(EdgeInsets())
+                                    .listRowBackground(Color.clear)
+                            }
+                        }
                         
                         CreditCardView()
                             .padding(.bottom, 15)
@@ -66,7 +70,11 @@ struct HomeView: View {
                     .padding(.top, 15)
                     .listStyle(PlainListStyle())
                     .scrollIndicators(.hidden)
-                    
+                    .refreshable {
+                        Task {
+                            try await viewModel.getHome()
+                        }
+                    }
                     
                 }
                 .toolbar {

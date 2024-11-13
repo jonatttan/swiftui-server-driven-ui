@@ -11,6 +11,8 @@ struct BalanceView: View {
     
     // MARK: - Attributes
     
+    let balanceResponse: BalanceResponse
+    
     // MARK: - UI Components
     
     private let grayColor = Color(red: 243.0/255.0,
@@ -45,8 +47,8 @@ struct BalanceView: View {
             }
             
             HStack {
-                Text("R$ 88,67")
-                    .font(.system(size: 28))
+                Text("\(balanceResponse.amount.currencySymbol) \(balanceResponse.amount.value.text)")
+                    .font(.system(size: CGFloat(balanceResponse.amount.value.fontSize)))
                     .fontWeight(.semibold)
                 Spacer()
             }
@@ -56,94 +58,29 @@ struct BalanceView: View {
     var mainActions: some View {
         ScrollView(.horizontal) {
             HStack(spacing: 13) {
-                Button {
-                    print("pix")
-                } label: {
-                    VStack {
-                        Circle()
-                            .fill(grayColor)
-                            .frame(width: 55, height: 55)
-                            .overlay {
-                                Image("pix-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30, height: 30)
-                            }
-                        
-                        
-                        Text("Pix")
-                            .font(.system(size: 14))
-                            .foregroundColor(.black)
-                            .fontWeight(.light)
+                ForEach(balanceResponse.items, id: \.id) { mainAction in
+                    Button {
+                        print(mainAction.title.text)
+                    } label: {
+                        VStack {
+                            Circle()
+                                .fill(grayColor)
+                                .frame(width: 55, height: 55)
+                                .overlay {
+                                    Image(mainAction.icon)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 30, height: 30)
+                                }
+                            
+                            Text(mainAction.title.text)
+                                .font(.system(size: CGFloat(mainAction.title.fontSize)))
+                                .foregroundColor(.black)
+                                .fontWeight(.light)
+                        }
                     }
+                    .frame(width: 80, height: 70)
                 }
-                .frame(width: 80, height: 70)
-                
-                Button {
-                    print("Transferir")
-                } label: {
-                    VStack {
-                        Circle()
-                            .fill(grayColor)
-                            .frame(width: 55, height: 55)
-                            .overlay {
-                                Image("transfer-money-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30, height: 30)
-                            }
-                        
-                        Text("Transferir")
-                            .font(.system(size: 14))
-                            .foregroundColor(.black)
-                            .fontWeight(.light)
-                    }
-                }
-                .frame(width: 80, height: 70)
-                
-                Button {
-                    print("QR Code")
-                } label: {
-                    VStack {
-                        Circle()
-                            .fill(grayColor)
-                            .frame(width: 55, height: 55)
-                            .overlay {
-                                Image("qr-code-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30, height: 30)
-                            }
-                        
-                        Text("QR Code")
-                            .font(.system(size: 14))
-                            .foregroundColor(.black)
-                            .fontWeight(.light)
-                    }
-                }
-                .frame(width: 80, height: 70)
-                
-                Button {
-                    print("Recarga")
-                } label: {
-                    VStack {
-                        Circle()
-                            .fill(grayColor)
-                            .frame(width: 55, height: 55)
-                            .overlay {
-                                Image("cellphone-icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 30, height: 30)
-                            }
-                        
-                        Text("Recarga")
-                            .font(.system(size: 14))
-                            .foregroundColor(.black)
-                            .fontWeight(.light)
-                    }
-                }
-                .frame(width: 80, height: 70)
             }
             .frame(height: 85)
         }
@@ -152,7 +89,7 @@ struct BalanceView: View {
 
 struct BalanceView_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceView()
+        BalanceView(balanceResponse: BalanceResponse(amount: BalanceResponse.Amount(currencySymbol: "R$", value: TextModel(text: "124,00", fontSize: 24, color: "#FFFFFF")), items: [BalanceResponse.BalanceItem(id: "pix", title: TextModel(text: "Pix", fontSize: 16, color: "#CCCCCC"), icon: "pix-icon")]))
             .previewLayout(.sizeThatFits)
     }
 }
