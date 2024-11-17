@@ -42,11 +42,6 @@ struct HomeView: View {
                             }
                         }
                         
-                        CreditCardView()
-                            .padding(.bottom, 15)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        
                         LoanView()
                             .padding(.bottom, 15)
                             .listRowInsets(EdgeInsets())

@@ -50,7 +50,10 @@ class HomeViewModel: ObservableObject {
                 }
                 sections.append(BalanceSection(model: model))
             case .creditCard:
-                break
+                guard let model: CreditCardResponse = item.content.decode() else {
+                    throw RequestError.decode
+                }
+                sections.append(CreditCardSection(model: model))
             case .loan:
                 break
             }

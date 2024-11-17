@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CreditCardView: View {
     
+    // MARK: - Attributes
+    
+    var creditCardVM: CreditCardResponse
+    
     // MARK: - UI Components
     
     private let creditCardBackgroundColor = Color(red: 36.0/255.0,
@@ -35,13 +39,13 @@ struct CreditCardView: View {
     var balance: some View {
         VStack {
             HStack {
-                Image("master-card-icon")
+                Image(creditCardVM.icon)
                     .frame(width: 35, height: 35)
                     .foregroundColor(.white)
                     .padding(.leading, 25)
                 
-                Text("Cartão final 9999")
-                    .font(.system(size: 16))
+                Text(creditCardVM.title.text)
+                    .font(.system(size: CGFloat(creditCardVM.title.fontSize)))
                     .fontWeight(.regular)
                     .foregroundColor(.white)
                 
@@ -55,8 +59,8 @@ struct CreditCardView: View {
             .padding(.top, 10)
             
             HStack {
-                Text("Limite disponível")
-                    .font(.system(size: 12))
+                Text(creditCardVM.subtitle.text)
+                    .font(.system(size: CGFloat(creditCardVM.subtitle.fontSize)))
                     .fontWeight(.regular)
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
@@ -64,8 +68,8 @@ struct CreditCardView: View {
             }
             
             HStack {
-                Text("R$ 9.074,98")
-                    .font(.system(size: 17))
+                Text(creditCardVM.value.text)
+                    .font(.system(size: CGFloat(creditCardVM.value.fontSize)))
                     .fontWeight(.regular)
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
@@ -73,8 +77,8 @@ struct CreditCardView: View {
             }
             
             HStack {
-                Text("Vence em 04/05")
-                    .font(.system(size: 12))
+                Text(creditCardVM.dueDate.text)
+                    .font(.system(size: CGFloat(creditCardVM.dueDate.fontSize)))
                     .fontWeight(.regular)
                     .foregroundColor(.white)
                     .padding(.horizontal, 20)
@@ -86,7 +90,13 @@ struct CreditCardView: View {
 
 struct CreditCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CreditCardView()
+        CreditCardView(creditCardVM: CreditCardResponse(
+            title: TextModel(text: "Cartão final 0908", fontSize: 17, color: "#CCCCCC"),
+            icon: "master-card-icon",
+            subtitle: TextModel(text: "Limite", fontSize: 17, color: "#CCCCCC"),
+            value: TextModel(text: "R$ 200,00", fontSize: 24, color: "#CCCCCC"),
+            dueDate: TextModel(text: "Vence em 20/09", fontSize: 17, color: "#CCCCCC"))
+        )
             .previewLayout(.sizeThatFits)
     }
 }
