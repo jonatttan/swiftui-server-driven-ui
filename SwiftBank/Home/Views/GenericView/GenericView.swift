@@ -1,5 +1,5 @@
 //
-//  SavingsView.swift
+//  LoanView.swift
 //  SwiftBank
 //
 //  Created by Alura on 31/12/23.
@@ -7,7 +7,11 @@
 
 import SwiftUI
 
-struct SavingsView: View {
+struct GenericView: View {
+    
+    // MARK: - Attributes
+    
+    var genericResponse: GenericSectionResponse
     
     // MARK: - UI Components
     
@@ -17,7 +21,7 @@ struct SavingsView: View {
     
     var body: some View {
         Button {
-            print("poupança")
+            print(genericResponse.title.text)
         } label: {
             RoundedRectangle(cornerRadius: 7)
                 .frame(maxWidth: .infinity)
@@ -36,13 +40,14 @@ struct SavingsView: View {
                     }
                 )
         }
+
     }
     
     var header: some View {
         VStack {
             HStack {
-                Text("Poupança")
-                    .font(.system(size: 16))
+                Text(genericResponse.title.text)
+                    .font(.system(size: CGFloat(genericResponse.title.fontSize)))
                     .fontWeight(.medium)
                 Spacer()
                 Image(systemName: "chevron.right")
@@ -54,18 +59,22 @@ struct SavingsView: View {
     
     var textMessage: some View {
         HStack {
-            Text("Guarde dinheiro e realize grandes sonhos.")
-                .font(.system(size: 12))
+            Text(genericResponse.subtitle.text)
+                .font(.system(size: CGFloat(genericResponse.subtitle.fontSize)))
                 .fontWeight(.light)
                 .lineSpacing(5)
                 .multilineTextAlignment(.leading)
+                .lineLimit(2)
         }
     }
 }
 
-struct SavingsView_Previews: PreviewProvider {
+struct LoanView_Previews: PreviewProvider {
     static var previews: some View {
-        SavingsView()
+        GenericView(genericResponse: GenericSectionResponse(
+            title: TextModel(text: "Title", fontSize: 18, color: "#CCCCCC"),
+            subtitle: TextModel(text: "Subtitle", fontSize: 12, color: "#CCCCCC")
+        ))
             .previewLayout(.sizeThatFits)
     }
 }

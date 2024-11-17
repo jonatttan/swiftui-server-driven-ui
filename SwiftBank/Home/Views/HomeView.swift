@@ -42,22 +42,8 @@ struct HomeView: View {
                             }
                         }
                         
-                        LoanView()
-                            .padding(.bottom, 15)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        
-                        SavingsView()
-                            .padding(.bottom, 15)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        
                         ActivitiesView()
                             .padding(.bottom, 15)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
-                        
-                        InsuranceView()
                             .listRowInsets(EdgeInsets())
                             .listRowBackground(Color.clear)
                     }
