@@ -92,8 +92,8 @@ struct ActivitieViewCell: View {
                         .foregroundColor(.gray)
                         .fontWeight(.light)
                 }
+                Spacer()
             }
-            
         }
         .frame(height: 60)
     }
