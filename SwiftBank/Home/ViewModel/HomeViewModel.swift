@@ -59,6 +59,11 @@ class HomeViewModel: ObservableObject {
                     throw RequestError.decode
                 }
                 sections.append(GenericSection(model: model))
+            case .transactions:
+                guard let model: TransactionsSectionResponse = item.content.decode() else {
+                    throw RequestError.decode
+                }
+                sections.append(TransactionsSection(model: model))
             }
         }
         return sections

@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ActivitiesView: View {
     
+    // MARK: - Attributes
+    
+    var transactionsResponse: TransactionsSectionResponse
+    
     // MARK: - UI Components
     
     private let grayColor = Color(red: 243.0/255.0,
@@ -41,8 +45,8 @@ struct ActivitiesView: View {
     var header: some View {
         VStack {
             HStack {
-                Text("Últimas transações")
-                    .font(.system(size: 16))
+                Text(transactionsResponse.title.text)
+                    .font(.system(size: CGFloat(transactionsResponse.title.fontSize)))
                     .fontWeight(.medium)
                 Spacer()
                 Image(systemName: "chevron.right")
@@ -54,16 +58,22 @@ struct ActivitiesView: View {
     
     var textMessage: some View {
         VStack {
-            activityRowView
-            activityRowView
-            activityRowView
+            ForEach(transactionsResponse.items, id: \.identifier) { item in
+                ActivitieViewCell(model: item)
+            }
         }
     }
+}
+
+struct ActivitieViewCell: View {
     
-    var activityRowView: some View {
+    // MARK: - Attributes
+    var model: TransactionsSectionResponse.TransactionItem
+    
+    var body: some View {
         VStack {
             HStack {
-                Image("restaurante-icon")
+                Image(model.icon)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 30, height: 30)
@@ -73,12 +83,12 @@ struct ActivitiesView: View {
                             .stroke(Color(red: 230.0/255.0, green: 230.0/255.0, blue: 230.0/255.0), lineWidth: 0.5)
                     )
                 VStack(alignment: .leading) {
-                    Text("Compra realizada no iFood")
-                        .font(.system(size: 14))
+                    Text(model.title.text)
+                        .font(.system(size: CGFloat(model.title.fontSize)))
                         .fontWeight(.light)
                     
-                    Text("R$ 22,70")
-                        .font(.system(size: 14))
+                    Text(model.value.text)
+                        .font(.system(size: CGFloat(model.value.fontSize)))
                         .foregroundColor(.gray)
                         .fontWeight(.light)
                 }
@@ -91,7 +101,36 @@ struct ActivitiesView: View {
 
 struct ActivitiesView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivitiesView()
+        ActivitiesView(transactionsResponse: TransactionsSectionResponse(
+            title: TextModel(text: "Sample Title",
+                             fontSize: 16,
+                             color: "#CCCCCC"),
+            items: [
+                TransactionsSectionResponse.TransactionItem(identifier: 01,
+                                                                icon: "restaurante-icon",
+                                                                title: TextModel(text: "Compra Baratão",
+                                                                                 fontSize: 14,
+                                                                                 color: "#CCCCCC"),
+                                                                value: TextModel(text: "R$ 34,99",
+                                                                                 fontSize: 16,
+                                                                                 color: "#CCCCCC")),
+                TransactionsSectionResponse.TransactionItem(identifier: 02,
+                                                                icon: "restaurante-icon",
+                                                                title: TextModel(text: "Compra Baratão",
+                                                                                 fontSize: 14,
+                                                                                 color: "#CCCCCC"),
+                                                                value: TextModel(text: "R$ 34,99",
+                                                                                 fontSize: 16,
+                                                                                 color: "#CCCCCC")),
+                TransactionsSectionResponse.TransactionItem(identifier: 03,
+                                                                icon: "restaurante-icon",
+                                                                title: TextModel(text: "Compra realizada no Biricotico",
+                                                                                 fontSize: 14,
+                                                                                 color: "#CCCCCC"),
+                                                                value: TextModel(text: "R$ 34,99",
+                                                                                 fontSize: 16,
+                                                                                 color: "#CCCCCC")),
+            ]))
             .previewLayout(.sizeThatFits)
     }
 }

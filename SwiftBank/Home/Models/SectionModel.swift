@@ -11,6 +11,7 @@ enum SectionType: String, Decodable {
     case balance
     case creditCard = "credit_card"
     case genericSection = "generic_section"
+    case transactions = "transactions_section"
 }
 
 struct SectionModel: Decodable {

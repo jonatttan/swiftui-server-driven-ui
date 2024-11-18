@@ -42,10 +42,10 @@ struct HomeView: View {
                             }
                         }
                         
-                        ActivitiesView()
-                            .padding(.bottom, 15)
-                            .listRowInsets(EdgeInsets())
-                            .listRowBackground(Color.clear)
+//                        ActivitiesView()
+//                            .padding(.bottom, 15)
+//                            .listRowInsets(EdgeInsets())
+//                            .listRowBackground(Color.clear)
                     }
                     .padding(.horizontal)
                     .padding(.top, 15)

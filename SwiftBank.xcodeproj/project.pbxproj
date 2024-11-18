@@ -26,6 +26,8 @@
 		092139312CE95EF6006F7971 /* CreditCardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092139302CE95EF6006F7971 /* CreditCardSection.swift */; };
 		092139342CE96DA8006F7971 /* GenericSectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092139332CE96DA8006F7971 /* GenericSectionResponse.swift */; };
 		092139362CE96E88006F7971 /* GenericSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092139352CE96E88006F7971 /* GenericSection.swift */; };
+		092139392CEA1008006F7971 /* TransactionsSectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092139382CEA1008006F7971 /* TransactionsSectionResponse.swift */; };
+		0921393B2CEA107F006F7971 /* TransactionsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0921393A2CEA107F006F7971 /* TransactionsSection.swift */; };
 		0927FD292CDCDA570056F85D /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0927FD282CDCDA570056F85D /* SectionModel.swift */; };
 		0927FD2C2CDCDE000056F85D /* DictionaryDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0927FD2B2CDCDE000056F85D /* DictionaryDecodable.swift */; };
 		0927FD302CE2256F0056F85D /* BalanceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0927FD2F2CE2256F0056F85D /* BalanceResponse.swift */; };
@@ -57,6 +59,8 @@
 		092139302CE95EF6006F7971 /* CreditCardSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCardSection.swift; sourceTree = "<group>"; };
 		092139332CE96DA8006F7971 /* GenericSectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSectionResponse.swift; sourceTree = "<group>"; };
 		092139352CE96E88006F7971 /* GenericSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericSection.swift; sourceTree = "<group>"; };
+		092139382CEA1008006F7971 /* TransactionsSectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsSectionResponse.swift; sourceTree = "<group>"; };
+		0921393A2CEA107F006F7971 /* TransactionsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsSection.swift; sourceTree = "<group>"; };
 		0927FD282CDCDA570056F85D /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
 		0927FD2B2CDCDE000056F85D /* DictionaryDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryDecodable.swift; sourceTree = "<group>"; };
 		0927FD2F2CE2256F0056F85D /* BalanceResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceResponse.swift; sourceTree = "<group>"; };
@@ -234,6 +238,15 @@
 			path = GenericSection;
 			sourceTree = "<group>";
 		};
+		092139372CEA0FDD006F7971 /* TransactionsSection */ = {
+			isa = PBXGroup;
+			children = (
+				092139382CEA1008006F7971 /* TransactionsSectionResponse.swift */,
+				0921393A2CEA107F006F7971 /* TransactionsSection.swift */,
+			);
+			path = TransactionsSection;
+			sourceTree = "<group>";
+		};
 		0927FD2A2CDCDD840056F85D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +281,7 @@
 				0921392D2CE95DDF006F7971 /* CreditCard */,
 				0927FD2D2CE225410056F85D /* Balance */,
 				092139322CE96D59006F7971 /* GenericSection */,
+				092139372CEA0FDD006F7971 /* TransactionsSection */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -351,6 +365,7 @@
 				0921392F2CE95DF6006F7971 /* CreditCardResponse.swift in Sources */,
 				03E5D8F42B45E32B00B9BC9A /* Endpoint.swift in Sources */,
 				03E5D8F62B45E48A00B9BC9A /* RequestMethod.swift in Sources */,
+				092139392CEA1008006F7971 /* TransactionsSectionResponse.swift in Sources */,
 				03BD4AAA2B3CB26000341CE2 /* SwiftBankApp.swift in Sources */,
 				03E5D8DD2B40D79A00B9BC9A /* CreditCardView.swift in Sources */,
 				0927FD322CE3609D0056F85D /* GenericSectionView.swift in Sources */,
@@ -364,6 +379,7 @@
 				0927FD342CE3614C0056F85D /* BalanceSection.swift in Sources */,
 				092139312CE95EF6006F7971 /* CreditCardSection.swift in Sources */,
 				03E5D9002B45F3C800B9BC9A /* HomeView.swift in Sources */,
+				0921393B2CEA107F006F7971 /* TransactionsSection.swift in Sources */,
 				092139342CE96DA8006F7971 /* GenericSectionResponse.swift in Sources */,
 				03E5D8FE2B45E64800B9BC9A /* HomeNetworkingService.swift in Sources */,
 				03E5D8E02B4213BD00B9BC9A /* GenericView.swift in Sources */,
